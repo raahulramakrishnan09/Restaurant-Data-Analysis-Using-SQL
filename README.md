@@ -24,7 +24,7 @@ The purpose of this repository is to demonstrate SQL queries for typical data an
 
 1. **Creating Table:**
    ```sql
-    CREATE TABLE RESTAURANT(
+   CREATE TABLE RESTAURANT(
 	  Dates DATE,
 	  INVOICE_NO NUMERIC(100),
 	  ITEM_Name VARCHAR(1000),
@@ -37,5 +37,43 @@ The purpose of this repository is to demonstrate SQL queries for typical data an
 	  Table_NUMBER VARCHAR(100),
 	  SERVER_NAME VARCHAR(20),
 	  CATEGORY VARCHAR(50)
-  );
-  ```
+   );
+   ```
+2. **Selecting All Data**
+	```sql
+ 	SELECT * FROM restaurant;
+ 	```
+
+3. **Items ordered on 21-07-2023**
+ 
+     ```sql
+      SELECT * FROM restaurant WHERE Dates ='2023-07-21';
+     ```
+4. **Customers ordered Chicken Biriyani With Raitha And Gravy**
+     ```sql
+     SELECT * FROM restaurant 
+     WHERE item_name ='Chicken Biriyani With Raitha And Gravy';
+     ```
+5. **Invoice no. and Total amount**
+   ```sql
+   SELECT invoice_no,SUM(final_total) FROM restaurant 
+   GROUP BY invoice_no;
+   ```
+6. **Invoice no., Total amount and Item name**
+   ```sql
+   SELECT invoice_no,SUM(final_total),STRING_AGG(ITEM_Name, ', ') AS aggregated_item_names FROM restaurant 
+   GROUP BY invoice_no;
+   ```
+7. **Invoice no., Total amount, Date and Item name**
+   ```sql
+   SELECT invoice_no,SUM(final_total),MIN(Dates) AS agg_date,
+   STRING_AGG(ITEM_Name, ', ') AS aggregated_item_names FROM restaurant 
+   GROUP BY invoice_no;
+   ```
+8. **Invoice no. with highest Total Amount**
+   ```sql
+   SELECT invoice_no,SUM(final_total) AS ft FROM restaurant 
+   GROUP BY invoice_no 
+   ORDER BY ft DESC
+   LIMIT 1;
+   ```
