@@ -77,3 +77,17 @@ The purpose of this repository is to demonstrate SQL queries for typical data an
    ORDER BY ft DESC
    LIMIT 1;
    ```
+9. **Average total amount**
+   ```sql
+   SELECT AVG(final_total) as avg_amt FROM restaurant;
+   ```
+10. **Total quantity of items sold per day**
+    ```sql
+    SELECT dates,sum(quantity) as tot_qty FROM restaurant
+    GROUP BY dates;
+    ```
+11. **Unique items in the invoice**
+    ```sql
+    SELECT invoice_no,STRING_AGG(distinct item_name,',') as uni_item FROM restaurant
+    GROUP BY invoice_no;
+    ```
