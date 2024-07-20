@@ -64,3 +64,31 @@ ORDER BY ft DESC
 LIMIT 1;
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Highest total amount
+
+SELECT invoice_no,SUM(final_total) AS total FROM restaurant
+GROUP BY invoice_no 
+ORDER BY total DESC
+LIMIT(1);
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Average total amount
+
+SELECT AVG(final_total) as avg_amt FROM restaurant;
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Total quantity of items sold per day
+
+SELECT dates,sum(quantity) as tot_qty FROM restaurant GROUP BY dates;
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Unique items in the invoice
+
+SELECT invoice_no,STRING_AGG(distinct item_name,',') as uni_item FROM restaurant
+GROUP BY invoice_no;
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
