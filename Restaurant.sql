@@ -65,15 +65,6 @@ LIMIT 1;
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
--- Highest total amount
-
-SELECT invoice_no,SUM(final_total) AS total FROM restaurant
-GROUP BY invoice_no 
-ORDER BY total DESC
-LIMIT(1);
-
----------------------------------------------------------------------------------------------------------------------------------------------------------
-
 -- Average total amount
 
 SELECT AVG(final_total) as avg_amt FROM restaurant;
